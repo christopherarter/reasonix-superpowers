@@ -42,8 +42,11 @@ export function parseFrontmatter(text) {
         const next = fmLines[j];
         const listMatch = next.match(/^\s+-\s+(.*)$/);
         const sectionMatch = next.match(/^\s+([A-Za-z0-9._-]+):\s*(.*)$/);
-        if (listMatch) { kind = 'list'; collectedList.push(stripQuotes(listMatch[1].trim())); j++; continue; }
-        if (sectionMatch) { kind = 'section'; collectedSection[sectionMatch[1].toLowerCase()] = stripQuotes(sectionMatch[2].trim()); j++; continue; }
+        // Once a block's kind is set, only keep collecting that same kind; a
+        // different indented form ends the block (it is reprocessed as a normal
+        // line) rather than being silently swallowed.
+        if (listMatch && kind !== 'section') { kind = 'list'; collectedList.push(stripQuotes(listMatch[1].trim())); j++; continue; }
+        if (sectionMatch && kind !== 'list') { kind = 'section'; collectedSection[sectionMatch[1].toLowerCase()] = stripQuotes(sectionMatch[2].trim()); j++; continue; }
         break;
       }
       if (kind === 'list') { fm[key] = collectedList.join(', '); i = j - 1; continue; }

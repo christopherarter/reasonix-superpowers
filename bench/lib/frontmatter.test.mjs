@@ -42,3 +42,17 @@ test('one-level section flattens to top level', () => {
   );
   assert.equal(frontmatter.type, 'project');
 });
+
+test('a top-level key after a list block still parses (real subagent case)', () => {
+  const { frontmatter } = parseFrontmatter(
+    '---\nname: deep-audit\nallowed-tools:\n  - read_file\n  - grep\nmodel: deepseek-pro\n---\n'
+  );
+  assert.equal(frontmatter['allowed-tools'], 'read_file, grep');
+  assert.equal(frontmatter.model, 'deepseek-pro');
+  assert.equal(frontmatter.name, 'deep-audit');
+});
+
+test('a colon inside a value is preserved (split on first colon only)', () => {
+  const { frontmatter } = parseFrontmatter('---\ndescription: use X: do Y\n---\n');
+  assert.equal(frontmatter.description, 'use X: do Y');
+});
