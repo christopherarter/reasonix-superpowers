@@ -1,6 +1,6 @@
 ---
 name: executing-plans
-description: Run a plan INLINE yourself this session (no subagents) with checkpoints? Not subagent-driven-development.
+description: Executing a written plan step-by-step yourself, in this session, with checkpoints? Load this first.
 ---
 
 # Executing Plans
@@ -11,7 +11,7 @@ Load plan, review critically, execute all tasks, report when complete.
 
 **Announce at start:** "I'm using the executing-plans skill to implement this plan."
 
-**Note:** Reasonix works much better with subagents. If you can dispatch subagents (`run_skill` against a subagent skill, or the `task` tool), prefer the **subagent-driven-development** skill instead of this one — quality is significantly higher.
+**Note:** Reasonix has first-class subagent orchestration. For higher quality on a multi-task plan, dispatch a fresh subagent per task with the native **`task`** tool (and `wait` to join parallel jobs, `review` for a code-review pass) instead of doing everything inline. Use this skill when you're executing the plan yourself, in-session, with checkpoints.
 
 ## The Process
 

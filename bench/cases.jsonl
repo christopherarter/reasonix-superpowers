@@ -3,13 +3,10 @@
 {"id":"tdd","prompt":"Implement the slugify() helper function for me.","expect":["test-driven-development"],"note":"implementing code"}
 {"id":"debugging","prompt":"This test keeps failing intermittently and I can't figure out why.","expect":["systematic-debugging"],"note":"bug => debug first"}
 {"id":"verification","prompt":"I think the fix is done. Can you confirm everything passes before we wrap up?","expect":["verification-before-completion"],"note":"claiming done"}
-{"id":"subagent-dev","prompt":"Execute this implementation plan task by task with a fresh agent and review per task.","expect":["subagent-driven-development"],"note":"plan execution, isolated"}
 {"id":"executing-plans","prompt":"Let's work through this implementation plan inline in this session with checkpoints.","expect":["executing-plans"],"note":"plan execution, inline"}
 {"id":"worktrees","prompt":"I want to start this feature in an isolated workspace so it doesn't touch my current branch.","expect":["using-git-worktrees"],"note":"isolation up front"}
 {"id":"finishing","prompt":"The feature is implemented and all tests pass. How do we wrap up the branch?","expect":["finishing-a-development-branch"],"note":"done => integrate"}
-{"id":"requesting-review","prompt":"I just finished this feature. Can you get it reviewed before we merge?","expect":["requesting-code-review"],"note":"request review"}
 {"id":"receiving-review","prompt":"Here is the code review feedback I got. Help me work through it.","expect":["receiving-code-review"],"note":"acting on feedback"}
-{"id":"parallel-agents","prompt":"There are three unrelated bugs in different modules. Can we tackle them at the same time?","expect":["dispatching-parallel-agents"],"note":"independent work"}
 {"id":"writing-skills","prompt":"I want to create a new Reasonix skill. How should I structure the SKILL.md?","expect":["writing-skills"],"note":"authoring skills"}
 {"id":"neg-trivia","prompt":"What is the capital of France?","expect":[],"mustNotInvoke":["brainstorming","systematic-debugging","writing-plans","test-driven-development"],"note":"pure trivia, no skill"}
 {"id":"neg-arith","prompt":"What is 17 multiplied by 23?","expect":[],"mustNotInvoke":["brainstorming","systematic-debugging","test-driven-development"],"note":"arithmetic, no skill"}

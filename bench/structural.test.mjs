@@ -16,16 +16,6 @@ test('missing description on a discoverable skill is a FAIL', () => {
   assert.ok(r.issues.some((i) => /description/i.test(i)));
 });
 
-test('worker skill MUST NOT have a description', () => {
-  const worker = { name: 'spec-reviewer', stem: 'spec-reviewer',
-    frontmatter: { name: 'spec-reviewer', runas: 'subagent' }, refs: [] };
-  assert.equal(evaluateSkill(worker).level, 'PASS');
-  const withDesc = { ...worker, frontmatter: { ...worker.frontmatter, description: 'oops' } };
-  const r = evaluateSkill(withDesc);
-  assert.equal(r.level, 'FAIL');
-  assert.ok(r.issues.some((i) => /invisible|description/i.test(i)));
-});
-
 test('index line over 130 chars is a FAIL', () => {
   const r = evaluateSkill({ ...ok, frontmatter: { name: 'brainstorming', description: 'x'.repeat(140) } });
   assert.equal(r.level, 'FAIL');

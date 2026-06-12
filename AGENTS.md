@@ -19,16 +19,20 @@ Match the situation:
 | a bug, a failing or flaky test, or anything surprising | **systematic-debugging** |
 | writing or fixing any code | **test-driven-development** |
 | you have a spec for a multi-step task | **writing-plans** |
-| executing a plan — a fresh subagent per task | **subagent-driven-development** |
-| executing a plan — inline, yourself, this session | **executing-plans** |
+| executing a written plan in this session | **executing-plans** |
 | about to say "done" / "fixed" / "passing" | **verification-before-completion** |
 | work is done and tests pass | **finishing-a-development-branch** |
-| want a review, or got review feedback | **requesting-code-review** / **receiving-code-review** |
-| 2+ unrelated problems at once | **dispatching-parallel-agents** |
+| you got code-review feedback (from `review` or a human) | **receiving-code-review** |
 | need an isolated workspace | **using-git-worktrees** |
 | making or editing a skill | **writing-skills** |
 
 Load it: `run_skill({ name: "<skill-name>", arguments: "<the task>" })`.
+
+These skills **supplement** Reasonix's native tools — they don't replace them. For
+dispatching subagents, code review, parallel work, and codebase exploration, use the
+native tools directly: **`task`** (run a subagent), **`review`** (code-review a diff),
+**`wait`** (join parallel jobs), **`explore`** (investigate the codebase). There is no
+skill for these — reach for the native tool.
 
 If you catch yourself about to explore, fix, or answer without loading a skill — STOP and load it.
 

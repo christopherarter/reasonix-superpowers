@@ -47,7 +47,7 @@ Before defining tasks, map out which files will be created or modified and what 
 ```markdown
 # [Feature Name] Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: use the subagent-driven-development skill (recommended) or executing-plans skill to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** implement this plan task-by-task — dispatch a fresh subagent per task with the native `task` tool (recommended for quality), or use the executing-plans skill to work through it inline. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** [One sentence describing what this builds]
 
@@ -141,6 +141,6 @@ After saving the plan, offer execution choice:
 
 **Which approach?"**
 
-**If Subagent-Driven chosen:** REQUIRED SUB-SKILL — use the **subagent-driven-development** skill (fresh subagent per task + two-stage review).
+**If Subagent-Driven chosen:** dispatch a fresh subagent per task with the native **`task`** tool. Apply the discipline each task: the subagent implements + tests (folding in test-driven-development), then before moving on, verify it matches the spec (nothing more/less) and do a code-review pass with the native **`review`** tool. Use **`wait`** to join any parallel jobs. Keep the implementer subagent free of the parent's context — give it exactly the task text it needs.
 
 **If Inline Execution chosen:** REQUIRED SUB-SKILL — use the **executing-plans** skill (batch execution with checkpoints).

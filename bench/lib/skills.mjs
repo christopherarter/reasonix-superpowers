@@ -11,8 +11,10 @@ export const KNOWN_TOOLS = new Set([
   'explore', 'review', 'research', 'security_review',
 ]);
 
-// Skills that are intentionally description-less (invisible workers per README).
-export const EXPECT_NO_DESCRIPTION = new Set(['task-implementer', 'spec-reviewer', 'code-reviewer']);
+// Skills that are intentionally description-less (invisible workers). The port
+// now leans on Reasonix-native subagent tools (task/review/wait), so there are
+// no worker skills — every skill is discoverable and must carry a description.
+export const EXPECT_NO_DESCRIPTION = new Set([]);
 
 export function isSubagent(fm) {
   return /subagent/i.test(fm.runas || '')

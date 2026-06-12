@@ -21,9 +21,9 @@ one live `reasonix run` call per case — expect it to take several minutes.
 ## How it works
 
 - **Stage 1 (`structural.mjs`)** validates every `skills/*/SKILL.md`: name regex,
-  the description contract (the 14 discoverable skills have a description; the 3
-  worker subagents — `task-implementer`, `spec-reviewer`, `code-reviewer` — must
-  NOT, so they stay invisible), the 130-char pinned-index line, the 4000-char
+  the description contract (every skill is discoverable and must carry a
+  description; `EXPECT_NO_DESCRIPTION` is the — currently empty — set of
+  intentionally-invisible skills), the 130-char pinned-index line, the 4000-char
   index budget, `allowed-tools` names, and non-empty references. Exits non-zero
   on any failure, so it gates CI.
 - **Stage 2 (`behavioral.mjs`)** copies `bench/reasonix.toml` to the repo root so

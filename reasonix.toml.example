@@ -8,10 +8,10 @@
 paths = ["~/code/superpowers-reasonix/skills"]
 
 # Optional: hide individual skills without deleting them.
-# disabled_skills = ["dispatching-parallel-agents"]
+# disabled_skills = ["executing-plans"]
 
-# Optional: per-role models for subagent-driven-development. Use a cheap/fast
-# model for mechanical implementation and a reasoning model for review.
+# Optional: per-tool models for Reasonix's native subagent tools. Use a cheap/fast
+# model for read-only investigation and a reasoning model for review.
 [agent]
-# subagent_model = "deepseek-chat"   # default for all subagents
-subagent_models = { task-implementer = "deepseek-chat", spec-reviewer = "deepseek-chat", code-reviewer = "deepseek-reasoner" }
+# subagent_model = "deepseek-flash"   # default for all subagents
+subagent_models = { explore = "deepseek-flash", review = "deepseek-pro", security_review = "deepseek-pro" }
