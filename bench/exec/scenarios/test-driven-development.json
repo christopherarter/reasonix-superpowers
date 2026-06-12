@@ -1,0 +1,13 @@
+{
+  "skill": "test-driven-development",
+  "prompt": "Add a `slugify(text)` function to src/strings.mjs that lowercases the text and replaces runs of whitespace with a single hyphen. Implement it properly.",
+  "fixture": "test-driven-development",
+  "maxSteps": 22,
+  "rubric": [
+    { "id": "test-first", "hardGate": true, "mechanical": "editPrecedes:tests/**:src/strings.mjs", "desc": "Wrote a failing test before the implementation" },
+    { "id": "saw-red", "hardGate": true, "mechanical": "failingTestRunBetween:tests/**:src/strings.mjs", "desc": "Ran the test and saw it fail before implementing" },
+    { "id": "green", "mechanical": "passingTestRunAfter:src/strings.mjs", "desc": "Re-ran the tests green after implementing" },
+    { "id": "asserts-behavior", "desc": "The test makes real assertions about slugify's output (e.g. 'Hello World' -> 'hello-world'), not a tautology" },
+    { "id": "minimal-impl", "desc": "The implementation is minimal and on-spec — no unrequested features" }
+  ]
+}
