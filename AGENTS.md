@@ -11,7 +11,7 @@ Loading a skill is cheap. Skipping it is the #1 mistake. Process skill FIRST. Ac
 Do NOT jump straight to `explore` or `bash` or a direct answer. The skill tells you HOW
 to explore, debug, build, and verify. So it comes first, every time.
 
-Start with **using-superpowers** — it finds the right skill. Then match the situation:
+Match the situation:
 
 | If… | Load this FIRST |
 |---|---|
@@ -31,3 +31,24 @@ Start with **using-superpowers** — it finds the right skill. Then match the si
 Load it: `run_skill({ name: "<skill-name>", arguments: "<the task>" })`.
 
 If you catch yourself about to explore, fix, or answer without loading a skill — STOP and load it.
+
+## Red flags — these thoughts mean STOP. You are rationalizing.
+
+| You think | Reality |
+|---|---|
+| "Just a simple question" | Questions are tasks. Check for a skill. |
+| "Let me explore / look first" | The skill tells you HOW to explore. Skill first. |
+| "I'll just do this one thing first" | Check BEFORE doing anything. |
+| "This skill is overkill" | Simple turns complex. Load it. |
+| "I already know this" | Knowing ≠ doing. Load the current skill. |
+
+If more than one skill fits, load the **process skill first** — brainstorming,
+systematic-debugging, verification-before-completion — then the implementation skill.
+"Build X" → brainstorming first. "Fix this bug" → systematic-debugging first.
+
+## Priority
+
+1. The user's explicit instructions (this file, `REASONIX.md`, direct asks) win over everything.
+2. Skills override default behavior where they conflict.
+3. A user request says WHAT to do, never "skip the skill." "Add X" still means: load the skill, then add X.
+

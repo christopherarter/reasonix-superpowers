@@ -1,4 +1,3 @@
-{"id":"using-superpowers","prompt":"What skills do you have available and how should you decide which to use?","expect":["using-superpowers"],"note":"meta/discovery"}
 {"id":"brainstorming","prompt":"I want to build a new feature for exporting reports. Where do we start?","expect":["brainstorming"],"note":"build work => design first"}
 {"id":"writing-plans","prompt":"We've agreed on the design for the report exporter. Write the implementation plan.","expect":["writing-plans"],"note":"spec exists => plan"}
 {"id":"tdd","prompt":"Implement the slugify() helper function for me.","expect":["test-driven-development"],"note":"implementing code"}

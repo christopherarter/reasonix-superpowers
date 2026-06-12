@@ -1,0 +1,18 @@
+<!--
+Paste this block into your project's AGENTS.md or REASONIX.md (loaded into every
+session). It makes the "check skills first" discipline always-on — the Reasonix
+equivalent of the Claude Code SessionStart injection, since Reasonix hooks cannot
+inject SessionStart output into context.
+-->
+
+## Skills
+
+At the start of every task — before acting, exploring, or asking clarifying
+questions — scan the pinned skills index and load the relevant skill with
+`run_skill` (or `read_skill` in plan mode). If there's even a small chance a
+skill applies, load it to check.
+
+Start with the **using-superpowers** skill; it routes to the rest. Process
+skills come first: **brainstorming** before building, **systematic-debugging**
+before fixing, **writing-plans** before multi-step work, and
+**verification-before-completion** before claiming anything is done.

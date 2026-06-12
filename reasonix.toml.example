@@ -1,0 +1,17 @@
+# Example Reasonix config wiring in the superpowers-reasonix skills.
+# Merge the relevant blocks into ~/.config/reasonix/config.toml (global)
+# or a project-level reasonix.toml.
+
+[skills]
+# Point at this repo's skills/ directory. ~ expands; relative paths resolve
+# against the project root. Add more roots as needed (order = priority).
+paths = ["~/code/superpowers-reasonix/skills"]
+
+# Optional: hide individual skills without deleting them.
+# disabled_skills = ["dispatching-parallel-agents"]
+
+# Optional: per-role models for subagent-driven-development. Use a cheap/fast
+# model for mechanical implementation and a reasoning model for review.
+[agent]
+# subagent_model = "deepseek-chat"   # default for all subagents
+subagent_models = { task-implementer = "deepseek-chat", spec-reviewer = "deepseek-chat", code-reviewer = "deepseek-reasoner" }
