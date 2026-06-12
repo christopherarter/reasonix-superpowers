@@ -17,15 +17,19 @@ export function extractSkillInvocations(jsonlText) {
     try { obj = JSON.parse(trimmed); } catch { continue; }
     if (obj.role !== 'assistant' || !Array.isArray(obj.tool_calls)) continue;
     for (const tc of obj.tool_calls) {
-      const fn = tc && tc.function;
-      if (!fn || !fn.name) continue;
-      if (SKILL_TOOLS.has(fn.name)) {
+      if (!tc) continue;
+      // Reasonix's npm build uses a FLAT tool-call shape: {id, name, arguments}.
+      // Tolerate the OpenAI-nested shape {function:{name, arguments}} as a fallback.
+      const name = tc.name ?? tc.function?.name;
+      const rawArgs = tc.arguments ?? tc.function?.arguments;
+      if (!name) continue;
+      if (SKILL_TOOLS.has(name)) {
         try {
-          const args = JSON.parse(fn.arguments || '{}');
+          const args = JSON.parse(rawArgs || '{}');
           if (args && typeof args.name === 'string') invocations.push(args.name);
         } catch { /* unparseable args: skip this call */ }
-      } else if (WRAPPER_TOOLS.has(fn.name)) {
-        invocations.push(fn.name);
+      } else if (WRAPPER_TOOLS.has(name)) {
+        invocations.push(name);
       }
     }
   }
