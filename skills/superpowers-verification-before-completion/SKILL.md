@@ -7,11 +7,11 @@ description: About to say done, fixed, or passing? STOP. Load first, show real e
 
 ## Overview
 
-Claiming work is complete without verification is dishonesty, not efficiency.
+Claiming work complete without verification = dishonesty, not efficiency.
 
 **Core principle:** Evidence before claims, always.
 
-**Violating the letter of this rule is violating the spirit of this rule.**
+**Break the letter = break the spirit.**
 
 ## The Iron Law
 
@@ -19,7 +19,7 @@ Claiming work is complete without verification is dishonesty, not efficiency.
 NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE
 ```
 
-If you haven't run the verification command in this message, you cannot claim it passes.
+Haven't run the verification command in this message? Cannot claim it passes.
 
 ## The Gate Function
 
@@ -51,13 +51,13 @@ Skip any step = lying, not verifying
 
 ## Red Flags - STOP
 
-- Using "should", "probably", "seems to"
-- Expressing satisfaction before verification ("Great!", "Perfect!", "Done!", etc.)
-- About to commit/push/PR without verification
+- "should", "probably", "seems to"
+- Satisfaction before verification ("Great!", "Perfect!", "Done!", etc.)
+- About to commit/push/PR unverified
 - Trusting subagent success reports
 - Relying on partial verification
-- Thinking "just this once"
-- Tired and wanting work over
+- "just this once"
+- Tired, want work over
 - **ANY wording implying success without having run verification**
 
 ## Rationalization Prevention
@@ -71,7 +71,7 @@ Skip any step = lying, not verifying
 | "Subagent said success" | Verify independently |
 | "I'm tired" | Exhaustion ≠ excuse |
 | "Partial check is enough" | Partial proves nothing |
-| "Different words so rule doesn't apply" | Spirit over letter |
+| "Different words, rule doesn't apply" | Spirit over letter |
 
 ## Key Patterns
 
@@ -108,14 +108,14 @@ Skip any step = lying, not verifying
 ## When To Apply
 
 **ALWAYS before:**
-- ANY variation of success/completion claims
+- ANY success/completion claim
 - ANY expression of satisfaction
 - ANY positive statement about work state
-- Committing, PR creation, task completion
-- Moving to next task
+- Commit, PR, task completion
+- Next task
 - Delegating to subagents
 
-**Rule applies to:** exact phrases, paraphrases, synonyms, implications of success, ANY communication suggesting completion/correctness.
+**Applies to:** exact phrases, paraphrases, synonyms, implications of success, ANY communication suggesting completion/correctness.
 
 ## The Bottom Line
 
@@ -123,4 +123,4 @@ Skip any step = lying, not verifying
 
 Run the command. Read the output. THEN claim the result.
 
-This is non-negotiable.
+Non-negotiable.

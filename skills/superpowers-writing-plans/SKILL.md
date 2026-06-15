@@ -7,33 +7,33 @@ description: Got a spec or requirements for a multi-step task? Load first, befor
 
 ## Overview
 
-Write comprehensive implementation plans assuming the engineer has zero context for our codebase and questionable taste. Document everything they need: which files to touch for each task, code, testing, docs to check, how to test it. Give them the whole plan as bite-sized tasks. DRY. YAGNI. TDD. Frequent commits.
+Write plans for an engineer with zero codebase context and questionable taste. Document everything: files per task, code, testing, docs to check, how to test. Whole plan as bite-sized tasks. DRY. YAGNI. TDD. Frequent commits.
 
-Assume they are a skilled developer, but know almost nothing about our toolset or problem domain. Assume they don't know good test design very well.
+Skilled, but knows almost nothing about our toolset or domain. Assume weak test design.
 
 **Announce at start:** "I'm using the superpowers-writing-plans skill to create the implementation plan."
 
-**Context:** If working in an isolated worktree, it should have been created via the **superpowers-using-git-worktrees** skill at execution time.
+**Context:** Isolated worktree? Created via the **superpowers-using-git-worktrees** skill at execution time.
 
 **Save plans to:** `docs/reasonix/plans/YYYY-MM-DD-<feature-name>.md`
-- (User preferences for plan location override this default)
+- (User plan-location preferences override this default)
 
 ## Scope Check
 
-If the spec covers multiple independent subsystems, it should have been broken into sub-project specs during superpowers-brainstorming. If it wasn't, suggest breaking this into separate plans — one per subsystem. Each plan should produce working, testable software on its own.
+Spec spans multiple independent subsystems? Should have been split into sub-project specs during superpowers-brainstorming. If not, suggest separate plans — one per subsystem. Each plan produces working, testable software on its own.
 
 ## File Structure
 
-Before defining tasks, map out which files will be created or modified and what each is responsible for. This is where decomposition decisions get locked in.
+Before tasks, map which files get created/modified and each one's responsibility. Decomposition locks in here.
 
-- Design units with clear boundaries and well-defined interfaces. Each file should have one clear responsibility.
-- You reason best about code you can hold in context at once, and your edits are more reliable when files are focused. Prefer smaller, focused files.
-- Files that change together should live together. Split by responsibility, not by technical layer.
-- In existing codebases, follow established patterns. If a file you're modifying has grown unwieldy, including a split in the plan is reasonable.
+- Clear boundaries, well-defined interfaces. One responsibility per file.
+- You reason best about code held in context at once; focused files = reliable edits. Prefer small, focused files.
+- Files that change together live together. Split by responsibility, not technical layer.
+- Existing codebases: follow established patterns. Modifying an unwieldy file? Planning a split is fine.
 
 ## Bite-Sized Task Granularity
 
-**Each step is one action (2-5 minutes):**
+**Each step = one action (2-5 minutes):**
 - "Write the failing test" — step
 - "Run it to make sure it fails" — step
 - "Implement the minimal code to make the test pass" — step
@@ -103,35 +103,35 @@ git commit -m "feat: add specific feature"
 
 ## No Placeholders
 
-Every step must contain the actual content an engineer needs. These are **plan failures** — never write them:
+Every step contains the actual content an engineer needs. These are **plan failures** — NEVER write them:
 - "TBD", "TODO", "implement later", "fill in details"
 - "Add appropriate error handling" / "add validation" / "handle edge cases"
 - "Write tests for the above" (without actual test code)
-- "Similar to Task N" (repeat the code — the engineer may be reading tasks out of order)
-- Steps that describe what to do without showing how (code blocks required for code steps)
+- "Similar to Task N" (repeat the code — engineer may read tasks out of order)
+- Steps describing what to do without showing how (code blocks required for code steps)
 - References to types, functions, or methods not defined in any task
 
 ## Remember
 - Exact file paths always
-- Complete code in every step — if a step changes code, show the code
+- Complete code in every step — step changes code, show the code
 - Exact commands with expected output
 - DRY, YAGNI, TDD, frequent commits
 
 ## Self-Review
 
-After writing the complete plan, look at the spec with fresh eyes and check the plan against it. This is a checklist you run yourself — not a subagent dispatch.
+After the full plan, reread the spec fresh and check the plan against it. Checklist you run yourself — not a subagent dispatch.
 
-**1. Spec coverage:** Skim each section/requirement in the spec. Can you point to a task that implements it? List any gaps.
+**1. Spec coverage:** Skim each spec section/requirement. Point to a task implementing it? List gaps.
 
-**2. Placeholder scan:** Search your plan for the red flags from "No Placeholders" above. Fix them.
+**2. Placeholder scan:** Search the plan for the "No Placeholders" red flags above. Fix them.
 
-**3. Type consistency:** Do the types, method signatures, and property names in later tasks match what you defined in earlier tasks? A function called `clearLayers()` in Task 3 but `clearFullLayers()` in Task 7 is a bug.
+**3. Type consistency:** Types, method signatures, property names in later tasks match earlier tasks? `clearLayers()` in Task 3 but `clearFullLayers()` in Task 7 is a bug.
 
-Fix issues inline. No need to re-review — just fix and move on. If you find a spec requirement with no task, add the task.
+Fix inline. No re-review — fix and move on. Spec requirement with no task? Add the task.
 
 ## Execution Handoff
 
-After saving the plan, offer execution choice:
+After saving, offer execution choice:
 
 **"Plan complete and saved to `docs/reasonix/plans/<filename>.md`. Two execution options:**
 
@@ -141,6 +141,6 @@ After saving the plan, offer execution choice:
 
 **Which approach?"**
 
-**If Subagent-Driven chosen:** dispatch a fresh subagent per task with the native **`task`** tool. Apply the discipline each task: the subagent implements + tests (folding in superpowers-test-driven-development), then before moving on, verify it matches the spec (nothing more/less) and do a code-review pass with the native **`review`** tool. Use **`wait`** to join any parallel jobs. Keep the implementer subagent free of the parent's context — give it exactly the task text it needs.
+**If Subagent-Driven chosen:** dispatch a fresh subagent per task with the native **`task`** tool. Discipline each task: subagent implements + tests (folding in superpowers-test-driven-development), then before moving on, verify it matches the spec (nothing more/less) and code-review with the native **`review`** tool. Use **`wait`** to join parallel jobs. Keep the implementer free of parent context — give it exactly the task text it needs.
 
 **If Inline Execution chosen:** REQUIRED SUB-SKILL — use the **superpowers-executing-plans** skill (batch execution with checkpoints).
