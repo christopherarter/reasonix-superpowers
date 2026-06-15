@@ -35,7 +35,7 @@ Skills are discovered from several roots. Pick one:
 
 ### Option A: point `[skills] paths` at this repo (recommended, keeps it updatable)
 
-In `~/.config/reasonix/config.toml` (or a project's `reasonix.toml`):
+In your global Reasonix config (`reasonix doctor` prints its path — it varies by build/OS), or a project's `reasonix.toml`:
 
 ```toml
 [skills]
@@ -109,13 +109,17 @@ Reasonix resembles Claude Code but diverges in ways that break a naive copy. Wha
 | **Parallel agents** | Fan out `Task` writers | Native `task` + `wait`; only **read-only** work parallelizes cleanly, so fan out `explore`/read tasks and integrate sequentially |
 | **Brainstorming visual companion** | Browser + Node server for mockups | Dropped (web-app feature). Replaced with the native `ask` tool for multiple-choice + text/ASCII sketches |
 | **Reference files** | Linked with `@path` / read on demand | `references/*.md` **auto-fold** into the skill body at load time; no `@` links, no extra reads |
-| **Descriptions** | Long, prose | Trimmed to fit Reasonix's **130-char pinned-index line**, front-loaded with triggers only (never a workflow summary) |
+| **Descriptions** | Long, third-person "Use when…" prose | Rewritten as forceful imperatives (`trigger? Load first — one core action`) to fit the **130-char pinned-index line** and lift invocation on the floor model. A deliberate divergence from obra's "Use when…" house style, validated by `bench/` (12/12); still never enumerates the multi-step workflow |
 | **Always-on injection** | SessionStart hook | Pinned index + `AGENTS.md` pointer (Reasonix hooks don't inject SessionStart output) |
 | **Paths** | `docs/superpowers/...`, `~/.config/superpowers/worktrees` | `docs/reasonix/...`, `~/.config/reasonix/worktrees` |
 | **`superpowers-writing-skills`** | Anthropic skill spec | Rewritten for Reasonix's frontmatter parser, index budget, references auto-fold, and subagent authoring rules |
 
 The disciplines themselves (the Iron Laws, red-flag tables, rationalization counters, RED-GREEN-REFACTOR) are preserved, because that content is what makes superpowers work regardless of platform.
 
-## Credit
+## License & attribution
 
-Original concept and content: **Jesse Vincent** ([obra/superpowers](https://github.com/obra/superpowers), MIT). This is a community port for the Reasonix platform.
+MIT — see [`LICENSE`](./LICENSE).
+
+Original concept and content: **Jesse Vincent** ([obra/superpowers](https://github.com/obra/superpowers)) — MIT, `Copyright (c) 2025 Jesse Vincent`, preserved in [`LICENSE`](./LICENSE). This is a community port for the Reasonix platform (`Copyright (c) 2026 Chris Arter`).
+
+**Versioning:** there is no Reasonix skill marketplace to resolve a version, and install just points `[skills] paths` at a checkout — so the git ref *is* the version. This repo isn't versioned with semver; pin a tag or commit if you need reproducibility. `bench/BASELINE.json` is meaningful relative to the commit that captured it.

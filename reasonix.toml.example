@@ -1,6 +1,7 @@
 # Example Reasonix config wiring in the superpowers-reasonix skills.
-# Merge the relevant blocks into ~/.config/reasonix/config.toml (global)
-# or a project-level reasonix.toml.
+# Merge the relevant blocks into your global Reasonix config (its location
+# varies by build/OS — run `reasonix doctor` to find it) or, simplest and
+# build-agnostic, a project-level reasonix.toml at your project root.
 
 [skills]
 # Point at this repo's skills/ directory. ~ expands; relative paths resolve
