@@ -34,6 +34,20 @@ one live `reasonix run` call per case — expect it to take several minutes.
   reported as a secondary signal. Results, per-case transcripts, and metrics land
   in `bench/results/` (gitignored); the summary is `bench/results/report.json`.
 
+## Determinism & the committed baseline
+
+Stage 1 is deterministic. Stage 2 is not bit-for-bit: it makes one live model call
+per case, and `bench/reasonix.toml` pins `temperature = 0.0`, but DeepSeek reasons
+even at zero temperature, so a borderline case can flip between runs. Treat a single
+flip as noise and re-run before reading anything into it.
+
+`bench/BASELINE.json` is a committed snapshot of a passing run (`passed`/`total`,
+`firstHit`, per-case results) — the regression anchor. Change a skill body or a
+description, re-run `node bench/bench.mjs`, and diff against it. The headline metric
+is **invocation**: a case passes when the expected skill fires at *any* step.
+`firstHit` (expected skill fired *first*) is the stricter secondary signal — so
+`12/12 passed, firstHit 10` means all twelve fired, two of them not first.
+
 ## Notes on the target build
 
 Verified against `reasonix npm-v1.4.0-rc.1`:

@@ -1,0 +1,157 @@
+{
+  "capturedBy": "post-improvement baseline (question-style descriptions)",
+  "model": "deepseek-flash",
+  "passed": 12,
+  "total": 12,
+  "firstHit": 10,
+  "results": [
+    {
+      "id": "brainstorming",
+      "pass": true,
+      "expected": [
+        "superpowers-brainstorming"
+      ],
+      "invoked": [
+        "superpowers-brainstorming"
+      ],
+      "firstSkill": "superpowers-brainstorming",
+      "expectedWasFirst": true,
+      "violated": []
+    },
+    {
+      "id": "writing-plans",
+      "pass": true,
+      "expected": [
+        "superpowers-writing-plans"
+      ],
+      "invoked": [
+        "superpowers-writing-plans"
+      ],
+      "firstSkill": "superpowers-writing-plans",
+      "expectedWasFirst": true,
+      "violated": []
+    },
+    {
+      "id": "tdd",
+      "pass": true,
+      "expected": [
+        "superpowers-test-driven-development"
+      ],
+      "invoked": [
+        "superpowers-test-driven-development"
+      ],
+      "firstSkill": "superpowers-test-driven-development",
+      "expectedWasFirst": true,
+      "violated": []
+    },
+    {
+      "id": "debugging",
+      "pass": true,
+      "expected": [
+        "superpowers-systematic-debugging"
+      ],
+      "invoked": [
+        "superpowers-systematic-debugging"
+      ],
+      "firstSkill": "superpowers-systematic-debugging",
+      "expectedWasFirst": true,
+      "violated": []
+    },
+    {
+      "id": "verification",
+      "pass": true,
+      "expected": [
+        "superpowers-verification-before-completion"
+      ],
+      "invoked": [
+        "superpowers-verification-before-completion"
+      ],
+      "firstSkill": "superpowers-verification-before-completion",
+      "expectedWasFirst": true,
+      "violated": []
+    },
+    {
+      "id": "executing-plans",
+      "pass": true,
+      "expected": [
+        "superpowers-executing-plans"
+      ],
+      "invoked": [
+        "superpowers-executing-plans"
+      ],
+      "firstSkill": "superpowers-executing-plans",
+      "expectedWasFirst": true,
+      "violated": []
+    },
+    {
+      "id": "worktrees",
+      "pass": true,
+      "expected": [
+        "superpowers-using-git-worktrees"
+      ],
+      "invoked": [
+        "superpowers-using-git-worktrees"
+      ],
+      "firstSkill": "superpowers-using-git-worktrees",
+      "expectedWasFirst": true,
+      "violated": []
+    },
+    {
+      "id": "finishing",
+      "pass": true,
+      "expected": [
+        "superpowers-finishing-a-development-branch"
+      ],
+      "invoked": [
+        "superpowers-finishing-a-development-branch"
+      ],
+      "firstSkill": "superpowers-finishing-a-development-branch",
+      "expectedWasFirst": true,
+      "violated": []
+    },
+    {
+      "id": "receiving-review",
+      "pass": true,
+      "expected": [
+        "superpowers-receiving-code-review"
+      ],
+      "invoked": [
+        "superpowers-receiving-code-review"
+      ],
+      "firstSkill": "superpowers-receiving-code-review",
+      "expectedWasFirst": true,
+      "violated": []
+    },
+    {
+      "id": "writing-skills",
+      "pass": true,
+      "expected": [
+        "superpowers-writing-skills"
+      ],
+      "invoked": [
+        "superpowers-writing-skills"
+      ],
+      "firstSkill": "superpowers-writing-skills",
+      "expectedWasFirst": true,
+      "violated": []
+    },
+    {
+      "id": "neg-trivia",
+      "pass": true,
+      "expected": [],
+      "invoked": [],
+      "firstSkill": null,
+      "expectedWasFirst": false,
+      "violated": []
+    },
+    {
+      "id": "neg-arith",
+      "pass": true,
+      "expected": [],
+      "invoked": [],
+      "firstSkill": null,
+      "expectedWasFirst": false,
+      "violated": []
+    }
+  ]
+}

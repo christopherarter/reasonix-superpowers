@@ -12,6 +12,12 @@ paths = ["./skills"]
 excluded_paths = ["~/.reasonix/skills", "~/.agents/skills", "~/.agent/skills", "~/.claude/skills"]
 max_depth = 3
 
+[agent]
+# Pin sampling so invocation/fidelity results vary as little as the model allows.
+# DeepSeek reasons even at temperature 0, so runs are NOT bit-for-bit deterministic —
+# treat a single borderline case flip as noise and re-run before trusting it.
+temperature = 0.0
+
 [permissions]
 # Headless benchmark: never block on approval prompts.
 mode = "allow"

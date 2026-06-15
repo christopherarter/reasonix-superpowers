@@ -6,7 +6,7 @@
   "rubric": [
     {
       "id": "produced-plan",
-      "mechanical": "artifactExists:**/*plan*.md",
+      "mechanical": "artifactExists:**/plans/*.md",
       "desc": "Produced a plan document"
     },
     {
@@ -16,7 +16,7 @@
     {
       "id": "no-placeholders",
       "hardGate": true,
-      "mechanical": "grepArtifactAbsent:**/*plan*.md:\\bTBD\\b|\\bTODO\\b|fill in|add error handling",
+      "mechanical": "grepArtifactAbsent:**/plans/*.md:\\bTBD\\b|\\bTODO\\b|fill in|add error handling",
       "desc": "Plan contains no placeholder text"
     },
     {

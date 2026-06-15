@@ -4,6 +4,15 @@ Measures whether `deepseek-flash` follows each of the 10 net-add skills'
 disciplines once the skill is loaded — a per-skill fidelity score to baseline
 before / regression-check after the caveman skill-body migration.
 
+## Why this exists (dogfooding `superpowers-writing-skills`)
+
+The `superpowers-writing-skills` skill says writing a skill IS test-driven: write a
+pressure scenario, watch an agent fail *without* the skill, then verify it complies
+with the skill loaded. This eval is that thesis executed against a real model — each
+scenario force-loads a skill body, runs it under pressure in an isolated workspace,
+and mechanically checks whether the discipline actually held. The skill preaches
+"test your skills"; this is the harness that does it.
+
 ## Run (two phases)
 
 ```bash

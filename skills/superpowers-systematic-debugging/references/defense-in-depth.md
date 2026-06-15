@@ -2,7 +2,7 @@
 
 ## Overview
 
-When you fix a bug caused by invalid data, adding validation at one place feels sufficient. But that single check can be bypassed by different code paths, refactoring, or mocks.
+Fix a bug caused by invalid data, validation at one place feels sufficient. But that single check gets bypassed by different code paths, refactoring, or mocks.
 
 **Core principle:** Validate at EVERY layer data passes through. Make the bug structurally impossible.
 
@@ -19,7 +19,7 @@ Different layers catch different cases:
 ## The Four Layers
 
 ### Layer 1: Entry Point Validation
-Reject obviously invalid input at the API boundary.
+Reject obviously invalid input at API boundary.
 ```typescript
 function createProject(name: string, workingDirectory: string) {
   if (!workingDirectory?.trim()) throw new Error('workingDirectory cannot be empty');
@@ -58,13 +58,13 @@ logger.debug('About to git init', { directory, cwd: process.cwd(), stack: new Er
 ## Applying the Pattern
 
 When you find a bug:
-1. **Trace the data flow** — where does the bad value originate? Where is it used?
-2. **Map all checkpoints** — list every point the data passes through
+1. **Trace the data flow** — where does bad value originate? Where used?
+2. **Map all checkpoints** — list every point data passes through
 3. **Add validation at each layer** — entry, business, environment, debug
 4. **Test each layer** — try to bypass layer 1, verify layer 2 catches it
 
 ## Key Insight
 
-All four layers can be necessary. During testing, each layer catches bugs the others miss: different code paths bypass entry validation; mocks bypass business logic; edge cases on different platforms need environment guards; debug logging identifies structural misuse.
+All four layers can be necessary. During testing, each catches bugs the others miss: different code paths bypass entry validation; mocks bypass business logic; edge cases on different platforms need environment guards; debug logging identifies structural misuse.
 
 **Don't stop at one validation point.** Add checks at every layer.

@@ -2,7 +2,7 @@
 
 ## Overview
 
-Bugs often manifest deep in the call stack (git init in wrong directory, file created in wrong location, database opened with wrong path). Your instinct is to fix where the error appears, but that's treating a symptom.
+Bugs often manifest deep in call stack (git init in wrong directory, file created in wrong location, database opened with wrong path). Instinct: fix where error appears. That treats a symptom.
 
 **Core principle:** Trace backward through the call chain until you find the original trigger, then fix at the source.
 
@@ -23,7 +23,7 @@ digraph when_to_use {
 }
 ```
 
-**Use when:** error happens deep in execution (not at entry point); stack trace shows a long call chain; unclear where invalid data originated; need to find which test/code triggers the problem.
+**Use when:** error happens deep in execution (not at entry point); stack trace shows long call chain; unclear where invalid data originated; need to find which test/code triggers the problem.
 
 ## The Tracing Process
 
@@ -35,7 +35,7 @@ digraph when_to_use {
 
 ## Adding Stack Traces
 
-When you can't trace manually, add instrumentation:
+Can't trace manually? Add instrumentation:
 
 ```typescript
 async function gitInit(directory: string) {
@@ -46,13 +46,13 @@ async function gitInit(directory: string) {
 }
 ```
 
-**Critical:** Use `console.error()` in tests (loggers may be suppressed). Log **before** the dangerous operation, not after it fails. Include directory, cwd, env vars, timestamps. Capture `new Error().stack` for the full call chain.
+**Critical:** Use `console.error()` in tests (loggers may be suppressed). Log **before** the dangerous operation, not after it fails. Include directory, cwd, env vars, timestamps. Capture `new Error().stack` for full call chain.
 
 **Run and capture:** `npm test 2>&1 | grep 'DEBUG git init'`. Look for test file names and line numbers; identify the pattern (same test? same parameter?).
 
 ## Finding Which Test Causes Pollution
 
-If something appears during tests but you don't know which test, bisect with the bundled `scripts/find-polluter.sh`:
+Something appears during tests but you don't know which test? Bisect with the bundled `scripts/find-polluter.sh`:
 
 ```bash
 ./scripts/find-polluter.sh '.git' 'src/**/*.test.ts'

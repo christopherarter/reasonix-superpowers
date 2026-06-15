@@ -1,0 +1,25 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # Stage 1 of the benchmark: deterministic, no API key required.
+      # Validates every skills/*/SKILL.md (name regex, description contract,
+      # 130-char pinned-index line, 4000-char index budget, tool names).
+      - name: Skill structural gate
+        run: node bench/structural.mjs
+
+      # Unit tests for the benchmark harness itself (also no API key).
+      - name: Harness unit tests
+        run: npm test

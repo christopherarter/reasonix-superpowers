@@ -1,0 +1,16 @@
+{
+  "name": "superpowers-reasonix",
+  "description": "A port of Jesse Vincent's superpowers skills to the DeepSeek-Reasonix CLI, with an invocation + execution-fidelity benchmark.",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/christopherarter/superpowers-reasonix.git"
+  },
+  "scripts": {
+    "test": "node --test bench/lib/*.test.mjs bench/*.test.mjs bench/exec/lib/*.test.mjs bench/exec/scenarios.test.mjs lib/*.test.mjs",
+    "bench:structural": "node bench/structural.mjs",
+    "bench": "node bench/bench.mjs"
+  }
+}
