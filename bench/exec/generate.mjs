@@ -23,7 +23,7 @@ function isolatedConfig() {
   return [
     `default_model = "deepseek-flash"`,
     `[skills]`,
-    `paths = ["${SKILLS_DIR}"]`,
+    `paths = ["./_skillsrc"]`,
     `excluded_paths = ["~/.reasonix/skills", "~/.agents/skills", "~/.agent/skills", "~/.claude/skills"]`,
     `[permissions]`,
     `mode = "allow"`,
@@ -33,13 +33,17 @@ function isolatedConfig() {
 
 function setupWorkspace(scenario) {
   const ws = mkdtempSync(join(tmpdir(), `exec-${scenario.skill}-`));
+  // Copy the skills locally and reference them by a RELATIVE path in the config, so
+  // the workspace reasonix.toml holds no absolute path back to the real repo —
+  // otherwise the agent reads that breadcrumb and wanders into the real checkout.
+  cpSync(SKILLS_DIR, join(ws, '_skillsrc'), { recursive: true });
   if (scenario.fixture) cpSync(join(HERE, 'fixtures', scenario.fixture), ws, { recursive: true });
   writeFileSync(join(ws, 'reasonix.toml'), isolatedConfig());
   if (scenario.git) {
     execFileSync('git', ['init', '-q'], { cwd: ws });
     execFileSync('git', ['add', '-A'], { cwd: ws });
     execFileSync('git', ['-c', 'user.email=e@e', '-c', 'user.name=n', 'commit', '-q', '-m', 'fixture'], { cwd: ws });
-    if (scenario.git.branch) execFileSync('git', ['checkout', '-q', '-b', scenario.git.branch], { cwd: ws });
+    if (scenario.git.branch) execFileSync('git', ['checkout', '-q', '-B', scenario.git.branch], { cwd: ws });
   }
   return ws;
 }
@@ -47,7 +51,7 @@ function setupWorkspace(scenario) {
 function snapshotFiles(dir, base = '') {
   const out = [];
   for (const e of readdirSync(dir)) {
-    if (e === '.git' || e === 'node_modules' || e === 'reasonix.toml') continue;
+    if (e === '.git' || e === 'node_modules' || e === 'reasonix.toml' || e === '_skillsrc') continue;
     const abs = join(dir, e); const rel = base ? `${base}/${e}` : e;
     if (statSync(abs).isDirectory()) out.push(...snapshotFiles(abs, rel)); else out.push(rel);
   }

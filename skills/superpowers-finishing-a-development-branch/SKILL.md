@@ -7,9 +7,9 @@ description: Branch finished, tests green? Load first to merge, PR, or clean up.
 
 ## Overview
 
-Guide completion of development work by presenting clear options and handling the chosen workflow.
+Present clear options. Handle chosen workflow.
 
-**Core principle:** Verify tests → Detect environment → Present options → Execute choice → Clean up.
+**Core principle:** Verify tests → detect environment → present options → execute choice → clean up.
 
 **Announce at start:** "I'm using the superpowers-finishing-a-development-branch skill to complete this work."
 
@@ -17,13 +17,13 @@ Guide completion of development work by presenting clear options and handling th
 
 ### Step 1: Verify Tests
 
-**Before presenting options, verify tests pass** (use the **superpowers-verification-before-completion** skill):
+**Verify tests pass before options** (use **superpowers-verification-before-completion**):
 
 ```bash
 npm test / cargo test / pytest / go test ./...
 ```
 
-**If tests fail:** report failures, state you cannot proceed with merge/PR until they pass. Stop. **If tests pass:** continue.
+**Tests fail:** report failures. Cannot merge/PR until they pass. Stop. **Tests pass:** continue.
 
 ### Step 2: Detect Environment
 
@@ -44,11 +44,11 @@ GIT_COMMON=$(cd "$(git rev-parse --git-common-dir)" 2>/dev/null && pwd -P)
 git merge-base HEAD main 2>/dev/null || git merge-base HEAD master 2>/dev/null
 ```
 
-Or ask: "This branch split from main — is that correct?"
+Or ask: "Branch split from main — correct?"
 
 ### Step 4: Present Options
 
-**Normal repo and named-branch worktree — present exactly these 4 options:**
+**Normal repo or named-branch worktree — present exactly these 4 options:**
 
 ```
 Implementation complete. What would you like to do?
@@ -73,7 +73,7 @@ Implementation complete. You're on a detached HEAD (externally managed workspace
 Which option?
 ```
 
-**Don't add explanation** — keep options concise.
+**Don't add explanation.** Keep options concise.
 
 ### Step 5: Execute Choice
 
@@ -88,7 +88,7 @@ git merge <feature-branch>
 <test command>   # Verify tests on merged result
 ```
 
-Only after merge succeeds: cleanup worktree (Step 6), then `git branch -d <feature-branch>`.
+After merge succeeds: cleanup worktree (Step 6), then `git branch -d <feature-branch>`.
 
 #### Option 2: Push and Create PR
 
@@ -104,15 +104,15 @@ EOF
 )"
 ```
 
-**Do NOT clean up the worktree** — the user needs it alive to iterate on PR feedback.
+**Do NOT clean up the worktree** — needed alive for PR feedback.
 
 #### Option 3: Keep As-Is
 
-Report: "Keeping branch <name>. Worktree preserved at <path>." Don't clean up.
+Report: "Keeping branch <name>. Worktree preserved at <path>." No cleanup.
 
 #### Option 4: Discard
 
-**Confirm first** — require the user to type `discard`:
+**Confirm first** — require typed `discard`:
 
 ```
 This will permanently delete:
@@ -123,11 +123,11 @@ This will permanently delete:
 Type 'discard' to confirm.
 ```
 
-If confirmed: `cd` to main repo root, cleanup worktree (Step 6), then `git branch -D <feature-branch>`.
+Confirmed: `cd` to main repo root, cleanup worktree (Step 6), then `git branch -D <feature-branch>`.
 
 ### Step 6: Cleanup Workspace
 
-**Only runs for Options 1 and 4.** Options 2 and 3 always preserve the worktree.
+**Runs for Options 1 and 4 only.** Options 2 and 3 preserve worktree.
 
 ```bash
 GIT_DIR=$(cd "$(git rev-parse --git-dir)" 2>/dev/null && pwd -P)
@@ -137,7 +137,7 @@ WORKTREE_PATH=$(git rev-parse --show-toplevel)
 
 **If `GIT_DIR == GIT_COMMON`:** normal repo, nothing to clean up.
 
-**If the worktree path is under `.worktrees/`, `worktrees/`, or `~/.config/reasonix/worktrees/`:** we created it — we own cleanup:
+**If worktree path under `.worktrees/`, `worktrees/`, or `~/.config/reasonix/worktrees/`:** we created it — we own cleanup:
 
 ```bash
 MAIN_ROOT=$(git -C "$(git rev-parse --git-common-dir)/.." rev-parse --show-toplevel)
@@ -146,7 +146,7 @@ git worktree remove "$WORKTREE_PATH"
 git worktree prune
 ```
 
-**Otherwise:** the harness owns this workspace. Do NOT remove it. If your platform provides a workspace-exit tool, use it; otherwise leave it in place.
+**Otherwise:** harness owns workspace. Do NOT remove it. Workspace-exit tool available? Use it. Else leave in place.
 
 ## Quick Reference
 
@@ -159,6 +159,6 @@ git worktree prune
 
 ## Red Flags
 
-**Never:** proceed with failing tests; merge without verifying tests on the result; delete work without typed confirmation; force-push without explicit request; remove a worktree before confirming merge success; clean up worktrees you didn't create; run `git worktree remove` from inside the worktree.
+**Never:** proceed on failing tests; merge without verifying tests on result; delete work without typed confirmation; force-push without explicit request; remove worktree before merge confirmed; clean up worktrees you didn't create; `git worktree remove` from inside the worktree.
 
-**Always:** verify tests before offering options; detect environment before presenting the menu; present exactly 4 options (or 3 for detached HEAD); get typed confirmation for Option 4; clean up the worktree for Options 1 & 4 only; `cd` to main repo root before removal; run `git worktree prune` after.
+**Always:** verify tests before options; detect environment before menu; present exactly 4 options (3 detached HEAD); typed confirmation for Option 4; clean up worktree for Options 1 & 4 only; `cd` to main repo root before removal; `git worktree prune` after.
