@@ -20,7 +20,7 @@ while [ $# -gt 0 ]; do
   case "$1" in
     --version) VERSION="${2:?--version needs a value}"; shift 2 ;;
     --version=*) VERSION="${1#*=}"; shift ;;
-    -h|--help) sed -n '2,12p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
+    -h|--help) sed -n '2,10p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
     *) echo "unknown option: $1" >&2; exit 2 ;;
   esac
 done
@@ -49,8 +49,10 @@ stage="$tmp/stage"
 mkdir -p "$stage"
 tar -xzf "$tarball" -C "$stage"
 [ -d "$stage/skills" ] || { echo "error: tarball missing skills/ — corrupt download?" >&2; exit 1; }
+[ -f "$stage/VERSION" ] && [ -f "$stage/AGENTS.md" ] || { echo "error: tarball missing VERSION or AGENTS.md — corrupt download?" >&2; exit 1; }
 
 # Remove a previous managed install (only the dirs WE recorded), if any.
+# NOTE: the installer owns every superpowers-* dir it records in the manifest; a re-run removes them. Don't keep your own dir named superpowers-* in this root.
 if [ -f "$SUPPORT_DIR/manifest" ]; then
   while IFS= read -r d; do
     [ -n "$d" ] && rm -rf "${SKILLS_ROOT:?}/$d"
