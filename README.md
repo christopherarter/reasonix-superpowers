@@ -32,7 +32,7 @@ Subagent dispatch, code review, parallel work, and codebase exploration aren't s
 curl -fsSL https://raw.githubusercontent.com/christopherarter/superpowers-reasonix/main/install.sh | bash
 ```
 
-Re-run anytime to upgrade. Pin a release with `--version v1.0.0`. Skills land in `~/.reasonix/skills/` (override with `REASONIX_SKILLS_DIR`). For the always-on discipline, copy the bundled `AGENTS.md` into each project:
+Re-run anytime to upgrade — it skips if you're already on the latest (`--force` to reinstall), and any earlier manual install it finds is backed up before being replaced (nothing is silently destroyed). Pin a release with `--version v1.0.0`. Skills land in `~/.reasonix/skills/` (override with `REASONIX_SKILLS_DIR`). For the always-on discipline, copy the bundled `AGENTS.md` into each project:
 
 ```bash
 cp ~/.reasonix/skills/.superpowers-reasonix/AGENTS.md <your-project>/AGENTS.md
