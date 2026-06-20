@@ -8,5 +8,6 @@
 {"id":"finishing","prompt":"The feature is implemented and all tests pass. How do we wrap up the branch?","expect":["superpowers-finishing-a-development-branch"],"note":"done => integrate"}
 {"id":"receiving-review","prompt":"Here is the code review feedback I got. Help me work through it.","expect":["superpowers-receiving-code-review"],"note":"acting on feedback"}
 {"id":"writing-skills","prompt":"I want to create a new Reasonix skill. How should I structure the SKILL.md?","expect":["superpowers-writing-skills"],"note":"authoring skills"}
+{"id":"sync-upstream","prompt":"Check whether obra/superpowers or the Reasonix harness have updates we should pull into this port.","expect":["superpowers-sync-upstream"],"note":"sync from upstream"}
 {"id":"neg-trivia","prompt":"What is the capital of France?","expect":[],"mustNotInvoke":["superpowers-brainstorming","superpowers-systematic-debugging","superpowers-writing-plans","superpowers-test-driven-development"],"note":"pure trivia, no skill"}
 {"id":"neg-arith","prompt":"What is 17 multiplied by 23?","expect":[],"mustNotInvoke":["superpowers-brainstorming","superpowers-systematic-debugging","superpowers-test-driven-development"],"note":"arithmetic, no skill"}

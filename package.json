@@ -9,7 +9,7 @@
     "url": "git+https://github.com/christopherarter/superpowers-reasonix.git"
   },
   "scripts": {
-    "test": "node --test bench/lib/*.test.mjs bench/*.test.mjs bench/exec/lib/*.test.mjs bench/exec/scenarios.test.mjs lib/*.test.mjs",
+    "test": "node --test bench/lib/*.test.mjs bench/*.test.mjs bench/exec/lib/*.test.mjs bench/exec/scenarios.test.mjs lib/*.test.mjs lib/upstream/*.test.mjs",
     "bench:structural": "node bench/structural.mjs",
     "bench": "node bench/bench.mjs",
     "drift": "node .github/scripts/check-upstream-drift.mjs"
