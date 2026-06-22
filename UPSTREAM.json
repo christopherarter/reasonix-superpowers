@@ -9,8 +9,8 @@
     "repo": "https://github.com/esengine/DeepSeek-Reasonix",
     "branch": "main-v2",
     "contractPaths": ["internal/tool", "internal/hook", "internal/skill", "internal/frontmatter", "internal/command"],
-    "lastVerifiedCommit": "7032f39336f4ae5f216e1fcb3368e5f679723490",
-    "lastVerifiedDate": "2026-06-19"
+    "lastVerifiedCommit": "f2a475a2a547a9d8204bbe20d312eda56965cf6b",
+    "lastVerifiedDate": "2026-06-22"
   },
   "skillMap": {
     "superpowers-brainstorming": "skills/brainstorming/SKILL.md",
