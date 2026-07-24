@@ -16,10 +16,11 @@ Load plan. Review critically. Execute all tasks. Report when complete.
 ## The Process
 
 ### Step 1: Load and Review Plan
-1. `read_file` the plan
-2. Review critically — find questions or concerns
-3. Concerns? Raise with human partner before starting
-4. No concerns? Create `todo_write` list, proceed
+1. Ensure an isolated workspace: use **superpowers-using-git-worktrees** to create one, or verify the existing one
+2. `read_file` the plan
+3. Review critically — find questions or concerns
+4. Concerns? Raise with human partner before starting
+5. No concerns? Create `todo_write` list, proceed
 
 ### Step 2: Execute Tasks
 

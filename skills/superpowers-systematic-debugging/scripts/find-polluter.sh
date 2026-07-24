@@ -18,8 +18,17 @@ echo "🔍 Searching for test that creates: $POLLUTION_CHECK"
 echo "Test pattern: $TEST_PATTERN"
 echo ""
 
-TEST_FILES=$(find . -path "$TEST_PATTERN" | sort)
-TOTAL=$(echo "$TEST_FILES" | wc -l | tr -d ' ')
+# find . emits ./-prefixed paths, so accept the pattern written with or
+# without a leading ./. find -path can't match '**/' against zero directory
+# levels, so src/**/*.test.ts would skip src/top.test.ts; also try the
+# pattern with '**/' collapsed to cover files directly under the base dir.
+TEST_PATTERN="${TEST_PATTERN#./}"
+TEST_FILES=$(find . \( -path "./$TEST_PATTERN" -o -path "./${TEST_PATTERN//\*\*\//}" \) | sort -u)
+if [ -z "$TEST_FILES" ]; then
+  TOTAL=0
+else
+  TOTAL=$(printf '%s\n' "$TEST_FILES" | wc -l | tr -d ' ')
+fi
 
 echo "Found $TOTAL test files"
 echo ""

@@ -27,9 +27,12 @@ npm test / cargo test / pytest / go test ./...
 
 ### Step 2: Detect Environment
 
+Capture all three up front, before any later step changes directory — `WORKTREE_PATH` must reflect where you are *now*, not after Step 5 has `cd`'d to the main repo root:
+
 ```bash
 GIT_DIR=$(cd "$(git rev-parse --git-dir)" 2>/dev/null && pwd -P)
 GIT_COMMON=$(cd "$(git rev-parse --git-common-dir)" 2>/dev/null && pwd -P)
+WORKTREE_PATH=$(git rev-parse --show-toplevel)
 ```
 
 | State | Menu | Cleanup |
@@ -129,19 +132,13 @@ Confirmed: `cd` to main repo root, cleanup worktree (Step 6), then `git branch -
 
 **Runs for Options 1 and 4 only.** Options 2 and 3 preserve worktree.
 
-```bash
-GIT_DIR=$(cd "$(git rev-parse --git-dir)" 2>/dev/null && pwd -P)
-GIT_COMMON=$(cd "$(git rev-parse --git-common-dir)" 2>/dev/null && pwd -P)
-WORKTREE_PATH=$(git rev-parse --show-toplevel)
-```
+Reuse the `GIT_DIR`, `GIT_COMMON`, and `WORKTREE_PATH` captured in Step 2 — do NOT recompute them here. Step 5 (Options 1 and 4) has already `cd`'d to the main repo root, so a fresh `git rev-parse --show-toplevel` would return the main repo, not the worktree, and remove the wrong path. Removal must run from outside the worktree.
 
 **If `GIT_DIR == GIT_COMMON`:** normal repo, nothing to clean up.
 
-**If worktree path under `.worktrees/`, `worktrees/`, or `~/.config/reasonix/worktrees/`:** we created it — we own cleanup:
+**If `WORKTREE_PATH` under `.worktrees/`, `worktrees/`, or `~/.config/reasonix/worktrees/`:** we created it — we own cleanup:
 
 ```bash
-MAIN_ROOT=$(git -C "$(git rev-parse --git-common-dir)/.." rev-parse --show-toplevel)
-cd "$MAIN_ROOT"
 git worktree remove "$WORKTREE_PATH"
 git worktree prune
 ```
