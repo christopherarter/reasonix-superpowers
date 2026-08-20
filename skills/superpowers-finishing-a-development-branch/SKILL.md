@@ -143,6 +143,26 @@ git worktree remove "$WORKTREE_PATH"
 git worktree prune
 ```
 
+**If removal is refused** (`contains modified or untracked files`): worktree holds files that exist nowhere else — uncommitted plans, notes, scratch work. Never `--force` on your own initiative. Show the user what's at stake and ask:
+
+```bash
+git -C "$WORKTREE_PATH" status --porcelain -uall
+```
+
+```
+Worktree removal refused — these files were never committed:
+
+<file list>
+
+1. Commit them to <branch> before cleanup
+2. Move them into <main repo root>
+3. Delete them (unrecoverable)
+
+Which?
+```
+
+Carry out the choice, then remove the worktree.
+
 **Otherwise:** harness owns workspace. Do NOT remove it. Workspace-exit tool available? Use it. Else leave in place.
 
 ## Quick Reference
@@ -156,6 +176,6 @@ git worktree prune
 
 ## Red Flags
 
-**Never:** proceed on failing tests; merge without verifying tests on result; delete work without typed confirmation; force-push without explicit request; remove worktree before merge confirmed; clean up worktrees you didn't create; `git worktree remove` from inside the worktree.
+**Never:** proceed on failing tests; merge without verifying tests on result; delete work without typed confirmation; force-push without explicit request; remove worktree before merge confirmed; clean up worktrees you didn't create; `git worktree remove` from inside the worktree; treat a removal-refused error as "just add `--force`" — it means files exist only there, so show the user and ask.
 
 **Always:** verify tests before options; detect environment before menu; present exactly 4 options (3 detached HEAD); typed confirmation for Option 4; clean up worktree for Options 1 & 4 only; `cd` to main repo root before removal; `git worktree prune` after.

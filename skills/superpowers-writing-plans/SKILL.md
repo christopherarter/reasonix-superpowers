@@ -55,6 +55,9 @@ Before tasks, map which files get created/modified and each one's responsibility
 
 **Tech Stack:** [Key technologies/libraries]
 
+**Spec:** [path to the spec/design doc this plan implements — the plan
+argues from the spec, so the spec travels with it; executors read both]
+
 ---
 ```
 
