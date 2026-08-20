@@ -2,15 +2,15 @@
   "obra": {
     "repo": "https://github.com/obra/superpowers",
     "skillsPath": "skills",
-    "lastSyncedCommit": "44c9b2d6e889982ac18c27d05a19fefe335194e1",
-    "lastSyncedDate": "2026-08-03"
+    "lastSyncedCommit": "b36e0829c6d0140e93cfef2ca599b1b07d4a7797",
+    "lastSyncedDate": "2026-08-20"
   },
   "reasonix": {
     "repo": "https://github.com/esengine/DeepSeek-Reasonix",
     "branch": "main-v2",
     "contractPaths": ["internal/tool", "internal/hook", "internal/skill", "internal/frontmatter", "internal/command"],
-    "lastVerifiedCommit": "34af76be31668b40a710e98e44c50a82ab9ff333",
-    "lastVerifiedDate": "2026-08-03"
+    "lastVerifiedCommit": "a8c41e239491727b9596bb399037b06dfa819d01",
+    "lastVerifiedDate": "2026-08-20"
   },
   "skillMap": {
     "superpowers-brainstorming": "skills/brainstorming/SKILL.md",
