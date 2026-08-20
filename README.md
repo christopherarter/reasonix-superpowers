@@ -1,5 +1,3 @@
-
-
 # superpowers-reasonix
 
 Process skills that give a [Reasonix](https://github.com/esengine/DeepSeek-Reasonix) coding agent the disciplines of a careful engineer: write the test first, debug from evidence, plan before coding, verify before claiming done. Each one loads at the moment it applies.
